@@ -1,0 +1,73 @@
+.header {
+    padding: 24px 0;
+    position: sticky;
+    background: rgba(20, 14, 56, 0.9);
+    top: 0;
+    width: 100%;
+    color: #fff;
+    z-index: 999;
+}
+
+.header .navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+}
+
+.header .navigation a {
+    text-decoration: none;
+    display: flex;
+    font-size: 18px;
+    text-transform: uppercase;
+    color: #fff;
+    font-weight: 600;
+}
+
+.header .auth {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    height: 100%;
+}
+
+.header .auth .user {
+    display: flex;
+    align-items: center;
+    user-select: none;
+    cursor: pointer;
+}
+
+.header .auth .user__fullname {
+    font-size: 18px;
+    color: #ffb41f;
+}
+
+.header .auth .user__avatar {
+    margin-right: 12px;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #ffb41f;
+    border-radius: 100%;
+    color: #ffb41f;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.header .auth button {
+    border: 3px solid #ffb41f;
+    font-size: 18px;
+    padding: 12px 24px;
+    background-color: #7414fa;
+    text-transform: uppercase;
+    color: #fff;
+    font-weight: 600;
+    border-radius: 12px;
+}
+
+.header .auth button span {
+    margin-right: 12px;
+}

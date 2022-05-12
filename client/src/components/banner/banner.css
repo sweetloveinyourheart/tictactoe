@@ -1,0 +1,47 @@
+.banner {
+    background-image: url(https://htmldemo.net/bonx/bonx/assets/img/bg/hero-bg1.webp);
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-position: center center;
+    background-size: cover;
+    height: 840px;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.banner .hero-content h1 {
+    margin-bottom: 41px;
+    font-family: "Metal Mania", cursive;
+    text-shadow: 3px 3px 0px #b154f0;
+    font-size: 100px;
+    line-height: 120px;
+    color: #ffffff;
+    text-transform: uppercase;
+}
+
+.banner .hero-content p {
+    font-size: 25px;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 47px;
+}
+
+.banner .hero-content button {
+    border: 3px solid #ffb41f;
+    font-size: 24px;
+    padding: 12px 24px;
+    background-color: #7414fa;
+    text-transform: capitalize;
+    color: #fff;
+    font-weight: 600;
+    border-radius: 12px;
+}
+
+.banner .hero-content button span {
+    margin-right: 16px;
+}
+
+.banner .hero-img img {
+    width: 100%;
+}

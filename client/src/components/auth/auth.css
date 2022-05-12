@@ -1,0 +1,131 @@
+.auth-section {
+    background-image: url(https://htmldemo.net/bonx/bonx/assets/img/bg/body-bg2.webp);
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-position: bottom;
+    background-size: cover;
+    height: 840px;
+    position: relative;
+}
+
+.auth-section .hero-content {
+    padding: 120px 0;
+    height: 502px;
+    margin-bottom: 140px;
+}
+
+.auth-section .hero-content h1 {
+    text-align: center;
+    margin-bottom: 24px;
+    font-family: "Metal Mania", cursive;
+    text-shadow: 3px 3px 0px #b154f0;
+    font-size: 100px;
+    line-height: 120px;
+    color: #ffffff;
+    text-transform: uppercase;
+}
+
+.auth-section .hero-content .link {
+    text-align: center;
+    color: #fff;
+}
+
+.auth-section .hero-content .link span {
+    margin: 0 8px;
+    font-size: 20px;
+    text-transform: uppercase;
+    font-weight: 600;
+    transition: 0.2s;
+}
+.auth-section .hero-content .link span:hover {
+    color: #b154f0;
+    cursor: pointer;
+}
+
+.auth-area {
+    padding: 80px 0;
+}
+
+/* .auth-section .auth-area .auth-area__image img {
+    width: 100%;
+} */
+
+.auth-section .auth-area .auth-area__exec h5 {
+    color: #fff;
+    font-size: 60px;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.auth-section .auth-area .auth-area__exec .msg {
+    color: #fff;
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 24px;
+}
+
+.auth-section .auth-area .auth-area__exec .msg--err {
+    color: #f30606;
+}
+
+.auth-section .auth-area .auth-area__exec .msg--success {
+    color: #06e763;
+}
+
+.auth-section .auth-form {
+    display: block;
+}
+
+.auth-section .auth-form .auth-form__input {
+    margin-bottom: 24px;
+}
+
+.auth-section .auth-form .auth-form__input input {
+    width: 100%;
+    height: 62px;
+    padding: 0 25px;
+    line-height: 17px;
+    color: #ffffff;
+    background: inherit;
+    border: 2px solid #281e4d;
+    border-radius: 10px;
+    transition: 0.2s;
+    display: inline-block;
+    font-weight: 600;
+}
+
+.auth-section .auth-form .auth-form__input input:focus {
+    outline: 2px solid #b154f0;
+}
+
+.auth-section .auth-form .auth-form__btn {
+    display: flex;
+    justify-content: center;
+    margin-top: 36px;
+}
+
+.auth-section .auth-form button {
+    border: 3px solid #ffb41f;
+    font-size: 24px;
+    padding: 12px 24px;
+    background: linear-gradient(to right, #8e2de2, #4a00e0);
+    text-transform: capitalize;
+    color: #fff;
+    font-weight: 600;
+    border-radius: 12px;
+    width: 300px;
+}
+
+.auth-section .auth-area__exec p {
+    margin-top: 36px;
+    text-align: center;
+    color: #fff;
+    font-size: 18px;
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+.auth-section .auth-area__exec p:hover {
+    color: #7414fa;
+}

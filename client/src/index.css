@@ -1,0 +1,15 @@
+@import 'bootstrap/dist/css/bootstrap.min.css';
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@400;600;700&display=swap');
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css");
+@import url('https://fonts.googleapis.com/css2?family=Metal+Mania&display=swap');
+body {
+  font-family: 'Exo 2', sans-serif;
+  background-size: cover;
+  background-color: #140e38;
+  background-image: url("https://htmldemo.net/bonx/bonx/assets/img/bg/body-bg.webp");
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}

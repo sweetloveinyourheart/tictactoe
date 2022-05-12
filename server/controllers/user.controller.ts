@@ -14,6 +14,11 @@ export const register = async (req: Request, res: Response) => {
         const data = req.body
 
         if (!data) throw new Error()
+
+        // Check account existing
+        const isExist = await UserModel.findOne({ username: data.username })
+        if(isExist) throw new Error("User already exist !")
+
         //Hasing password
         // generate salt to hash password
         const salt = await bcrypt.genSalt(10);
@@ -32,7 +37,7 @@ export const register = async (req: Request, res: Response) => {
     } catch (error) {
         return res.status(400).json({
             data: null,
-            error: "Create failed !"
+            error
         })
     }
 }
@@ -57,6 +62,27 @@ export const getProfile = async (req: Request & { userId?: string }, res: Respon
         return res.status(401).json({
             data: null,
             error: "Unauthorized !"
+        })
+    }
+}
+
+
+export const addFriend = async (req: Request & { userId?: string }, res: Response) => {
+    try {
+        const { friendId } = req.params
+        await UserModel.findByIdAndUpdate(req.userId, { $push: { friends: friendId } })
+
+        return res.status(200).json({
+            data: {
+                message: "Friend added !"
+            },
+            error: null
+        })
+
+    } catch (error) {
+        return res.status(400).json({
+            data: null,
+            error: "Add friend failed !"
         })
     }
 }

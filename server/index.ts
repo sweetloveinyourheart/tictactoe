@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import router from './routers';
 import cookieParser from 'cookie-parser'
+import cors from 'cors'
 
 dotenv.config();
 
@@ -15,9 +16,10 @@ mongoose.connect(url, { autoIndex: true }, (err) => {
   console.log("Database connect successfully !");
 });
 
+app.use(cors())
 app.use(express.json());
 app.use(cookieParser())
-app.use("/", router);
+app.use("/api", router);
 
 app.listen(port, () => {
   console.log(`⚡️[server]: Server is running at https://localhost:${port}`);

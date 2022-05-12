@@ -36,9 +36,9 @@ export const login = async (req: Request, res: Response) => {
         })
 
     } catch (error) {
-        return res.status(404).json({
+        return res.status(401).json({
             data: null,
-            error
+            error: "Unauthorized"
         })
     }
 }
