@@ -1,11 +1,11 @@
 .header {
     padding: 24px 0;
-    position: sticky;
-    background: rgba(20, 14, 56, 0.9);
+    position: relative;
+    /* background: rgba(20, 14, 56, 0.9); */
+    background-color: transparent;
     top: 0;
     width: 100%;
     color: #fff;
-    z-index: 999;
 }
 
 .header .navigation {
@@ -36,7 +36,7 @@
     align-items: center;
     user-select: none;
     cursor: pointer;
-}
+} 
 
 .header .auth .user__fullname {
     font-size: 18px;

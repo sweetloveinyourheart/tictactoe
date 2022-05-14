@@ -1,0 +1,41 @@
+.playground {
+    padding: 120px 0;
+    height: 100%;
+}
+
+.playground .area {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.playground .area .caro-row {
+    display: flex;
+}
+
+.playground .area .caro-col {
+    width: 100px;
+    height: 100px;
+    box-shadow: 0 0 .1rem #fff,
+    0 0 .1rem #fff,
+    0 0 1rem #e21873,
+    0 0 0.4rem #e21873,
+    0 0 1.4rem #e21873,
+    inset 0 0 0.7rem #e21873; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.playground .area .caro-col--x {
+    font-size: 48px;
+    color: #06e763;
+}
+
+.playground .area .caro-col--o {
+    font-size: 40px;
+    color: #f30606;
+}

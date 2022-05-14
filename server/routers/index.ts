@@ -1,7 +1,7 @@
 import { login, logout, refreshToken } from "../controllers/auth.controller"
 import { Router } from "express"
 import { addFriend, getProfile, register } from "../controllers/user.controller"
-import { authGuard } from "../middlewares/jwt"
+import { authGuard } from "../middlewares/jwt.guard"
 const router = Router()
 
 // AUTH

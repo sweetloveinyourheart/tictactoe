@@ -1,0 +1,51 @@
+.invite-modal {
+    width: 500px;
+    color: #fff;
+}
+
+.invite-modal .modal-header button {
+    background-color: transparent;
+    color: #f30606;
+    border: 1px solid #f30606;
+}
+
+.invite-modal .modal-header h5 {
+    text-transform: uppercase;
+}
+
+.invite-modal .modal-body .friend {
+    font-weight: 600;
+    margin-bottom: 12px;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.invite-modal .modal-body .friend__avatar {
+    margin-right: 12px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #ffb41f;
+    border-radius: 100%;
+    color: #ffb41f;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.invite-modal .modal-footer button {
+    margin-left: 24px;
+    padding: 8px 23px;
+    color: #fff;
+    border: none;
+}
+
+.invite-modal .modal-footer .accept-btn {
+    background-color: #06e763;
+}
+
+.invite-modal .modal-footer .denied-btn {
+    background-color: #f30606;
+}

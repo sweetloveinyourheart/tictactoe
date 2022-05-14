@@ -1,0 +1,45 @@
+.match {
+    background-image: url(https://htmldemo.net/bonx/bonx/assets/img/bg/body-bg2.webp);
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-position: bottom;
+    background-size: cover;
+    min-height: 840px;
+    position: relative;
+}
+
+.match .invite {
+    padding: 120px 0;
+    color: #fff;
+}
+
+.match .invite {
+    display: flex;
+    justify-content: center;
+}
+
+.match .invite__box h1 {
+    text-align: center;
+    margin-bottom: 24px;
+
+}
+
+.match .invite__box .invite-box-form {
+}
+
+.match .invite__box .invite-box-form input {
+    width: 350px;
+    padding: 12px 24px;
+    background: transparent;
+    border: 2px solid #b154f0;
+    border-right: none;
+    color: #fff;
+    outline: none;
+}
+
+.match .invite__box .invite-box-form button {
+    padding: 12px 24px;
+    border: 2px solid #ffb41f;
+    background: transparent;
+    color: #ffb41f;
+}

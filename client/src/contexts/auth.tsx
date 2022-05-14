@@ -6,6 +6,7 @@ interface AuthContextType {
     user?: UserInterface;
     loading: boolean;
     error?: any;
+    accessToken?: string;
     login: (user: { username: string, password: string }) => void;
     logout: () => void;
 }
@@ -34,7 +35,7 @@ const AuthProvider: FunctionComponent<any> = ({ children }) => {
             }
 
             clearTimeout(tokenExpire);
-            setTokenExpired(setTimeout(() => getToken(), 15 * 60 * 1000))
+            setTokenExpired(setTimeout(() => getToken(), 10 * 60 * 1000))
         } catch (error) {
             setLoadingInitial(false)
             setUser(undefined)
@@ -89,6 +90,7 @@ const AuthProvider: FunctionComponent<any> = ({ children }) => {
             error,
             login,
             logout,
+            accessToken
         }),
         [user, loading, error]
     );
