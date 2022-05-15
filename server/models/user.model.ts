@@ -29,9 +29,14 @@ const UserModelSchema = new Schema({
         required: false
     },
 
+    TTP: {
+        type: Number,
+        default: 0
+    },
+
     friends: {
         type: [Schema.Types.ObjectId],
-        ref: "UserSchema",
+        ref: "UserModel",
         default: []
     }
 

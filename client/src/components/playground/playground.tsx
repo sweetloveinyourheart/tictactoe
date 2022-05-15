@@ -1,35 +1,59 @@
-import { FunctionComponent } from "react";
+import { FunctionComponent, useCallback, useState } from "react";
 import "./playground.css"
 
-interface PlaygroundProps {
-
+interface PlaygroundProps { 
+    icon: number
 }
 
-const Playground: FunctionComponent<PlaygroundProps> = () => {
+const Playground: FunctionComponent<PlaygroundProps> = ({ icon }) => {
+    const [caro, setCaro] = useState([
+        [-1, -1, -1],
+        [-1, -1, -1],
+        [-1, -1, -1]
+    ])
+    const [count, setCount] = useState(0)
+
+    const onCaroClick = useCallback((x: number, y: number) => {
+        let items = caro
+        items[x][y] = icon
+        setCaro(items)
+        setCount(s => s + 1)
+    }, [caro, count, icon])
+
+    const renderCaroTable = () => {
+        return caro.map((el, x) => {
+            return (
+                <div className="caro-row" key={x}>
+                    {el.map((elm, y) => {
+                        if (elm < 0)
+                            return (
+                                <div className="caro-col" key={y} onClick={() => onCaroClick(x, y)}></div>
+                            )
+
+                        if (elm === 0)
+                            return (
+                                <div className="caro-col caro-col--o" key={y}>
+                                    <i className="far fa-circle"></i>
+                                </div>
+                            )
+
+                        return (
+                            <div className="caro-col caro-col--x" key={y}>
+                                <i className="fas fa-times"></i>
+                            </div>
+                        )
+                    })})
+                </div>
+            )
+        })
+    }
+
     return (
         <section className="playground">
             <div className="container">
                 <div className="area">
                     <div className="caro">
-                        <div className="caro-row">
-                            <div className="caro-col caro-col--x">
-                                <i className="fas fa-times"></i>
-                            </div>
-                            <div className="caro-col caro-col--o">
-                                <i className="far fa-circle"></i>
-                            </div>
-                            <div className="caro-col"></div>
-                        </div>
-                        <div className="caro-row">
-                            <div className="caro-col"></div>
-                            <div className="caro-col"></div>
-                            <div className="caro-col"></div>
-                        </div>
-                        <div className="caro-row">
-                            <div className="caro-col"></div>
-                            <div className="caro-col"></div>
-                            <div className="caro-col"></div>
-                        </div>
+                        {renderCaroTable()}
                     </div>
                 </div>
             </div>

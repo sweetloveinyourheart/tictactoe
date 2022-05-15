@@ -82,6 +82,7 @@ export const logout = async (req: Request, res: Response) => {
                 message: "Logout successfully !"
             }
         })
+        
     } catch (error) {
         return res.status(403).json({
             data: null,

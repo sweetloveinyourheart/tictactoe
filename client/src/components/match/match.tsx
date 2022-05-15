@@ -1,4 +1,5 @@
 import { FunctionComponent, useCallback, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../contexts/auth";
 import { useSocket } from "../../contexts/socket";
 import Loading from "../loading/loading";
@@ -10,18 +11,27 @@ const Match: FunctionComponent<MatchProps> = () => {
     const [isInviting, setIsInviting] = useState<boolean>(false)
     const [friend, setFriend] = useState<string>("")
 
+    const navigate = useNavigate()
     const { socket } = useSocket()
     const { user } = useAuth()
 
     useEffect(() => {
         socket?.on('invite-response', (payload) => {
-            if (!payload.data) {
+            if (!payload?.data) {
                 setIsInviting(false)
             } else {
                 setTimeout(() => setIsInviting(false), 60 * 1000)
             }
         })
-    }, [socket])
+
+        socket?.on('match-response', (payload) => {
+            if(payload?.data) {
+                navigate(`/playground?matchId=${payload.data.matchId}`)
+            } else {
+                setIsInviting(false)
+            }
+        })
+    }, [socket, navigate])
 
     const onInviteFriend = useCallback((username?: string) => {
         if (isInviting) return;
@@ -36,7 +46,7 @@ const Match: FunctionComponent<MatchProps> = () => {
         }
 
         socket?.emit('invite-request', { friend, inviter: user?.fullname })
-    }, [friend, isInviting])
+    }, [friend, isInviting, user?.fullname])
 
     return (
         <section className="match">

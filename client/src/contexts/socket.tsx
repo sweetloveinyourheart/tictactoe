@@ -1,6 +1,5 @@
 import { createContext, FunctionComponent, useContext, useEffect, useMemo, useState } from "react";
 import io, { Socket } from 'socket.io-client'
-import InviteModal from "../components/modal/invite-modal";
 import { useAuth } from "./auth";
 
 interface SocketContextType {
@@ -28,7 +27,7 @@ const SocketProvider: FunctionComponent<SocketProviderProps> = ({ children }) =>
         if (user) {
             setSocket(io(socketEndpoint || "localhost:9000", { query: { token: accessToken } }))
         }
-    }, [user])
+    }, [user, accessToken])
 
     const memoedValue = useMemo(
         () => ({
@@ -40,7 +39,6 @@ const SocketProvider: FunctionComponent<SocketProviderProps> = ({ children }) =>
     return (
         <SocketContext.Provider value={memoedValue}>
             {children}
-            <InviteModal />
         </SocketContext.Provider>
     );
 }

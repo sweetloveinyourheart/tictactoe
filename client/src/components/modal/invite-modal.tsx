@@ -1,12 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import Modal from 'react-modal';
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/auth';
 import { useSocket } from '../../contexts/socket';
 import './invite-modal.css'
 
 interface InviteRes {
     message: string
-    data: { inviter: string } | null
+    data: { inviter: string, roomId: string } | null
 }
 
 const customStyles = {
@@ -28,20 +29,47 @@ const customStyles = {
 Modal.setAppElement('#root');
 
 export default function InviteModal() {
-    const [modalIsOpen, setIsOpen] = React.useState(false);
+    const [modalIsOpen, setIsOpen] = useState(false);
     const [inviter, setInviter] = useState("A")
+    const [roomId, setRoomId] = useState("")
 
     const { user } = useAuth()
     const { socket } = useSocket()
+
+    const navigate = useNavigate()
 
     useEffect(() => {
         socket?.on('match-request', (payload: InviteRes) => {
             if (payload.data) {
                 setIsOpen(true)
                 setInviter(payload.data.inviter)
+                setRoomId(payload.data.roomId)
+            }
+        })
+
+        socket?.on('match-response', (payload) => {
+            if(payload?.data) {
+                navigate(`/playground?matchId=${payload.data.matchId}`)
+            } else {
+                setIsOpen(false)
             }
         })
     }, [socket])
+
+    const onAccept = useCallback(() => {
+        setIsOpen(false)
+        socket?.emit('match-accept', {
+            roomId,
+            competitor: inviter
+        })
+    }, [roomId])
+
+    const onReject = useCallback(() => {
+        setIsOpen(false)
+        socket?.emit('match-accept', {
+            roomId
+        })
+    }, [roomId])
 
     function afterOpenModal() {
         // references are now sync'd and can be accessed.
@@ -80,8 +108,8 @@ export default function InviteModal() {
                 </div>
                 <div className='modal-footer'>
                     <div className='actions'>
-                        <button className='denied-btn'> Denied </button>
-                        <button className='accept-btn'> Accept </button>
+                        <button className='denied-btn' onClick={() => onReject()}> Reject </button>
+                        <button className='accept-btn' onClick={() => onAccept()}> Accept </button>
                     </div>
                 </div>
             </div>
