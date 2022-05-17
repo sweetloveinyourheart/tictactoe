@@ -1,6 +1,6 @@
 import { UserModel } from "../models/user.model";
 import { Server, Socket } from "socket.io";
-import { MatchModel } from "../models/match";
+import { MatchModel, MatchResult } from "../models/match";
 
 interface InvitePayload {
     friend: string
@@ -10,6 +10,20 @@ interface InvitePayload {
 interface MatchAcceptPayload {
     roomId: string
     competitor: string
+}
+
+interface TicPayload {
+    matchId: string
+    position: {
+        x: number
+        y: number
+    }
+    icon: number
+}
+
+interface MatchResultPayload {
+    matchId: string
+    winner: MatchResult
 }
 
 export default function socketHandlers(io: Server, socket: Socket & { userId?: string }) {
@@ -68,7 +82,40 @@ export default function socketHandlers(io: Server, socket: Socket & { userId?: s
     })
 
     // playground
-    
+    socket.on('init-match', async ({ matchId }) => {
+        const match = await MatchModel.findById(matchId).populate(['P1', 'P2'])
+        if (match.P1._id.toString() === socket.userId || match.P2._id.toString() === socket.userId) {
+            socket.join(matchId)
+        }
+    })
 
+    socket.on('tic', ({ matchId, position, icon }: TicPayload) => {
+        io.to(matchId).emit('tic-listener', {
+            position,
+            player: socket.userId,
+            icon
+        })
+    })
 
+    socket.on('match-result', async ({ matchId, winner }: MatchResultPayload) => {
+        const { P1, P2 } = await MatchModel.findByIdAndUpdate(matchId, {
+            result: winner
+        }).populate(['P1', 'P2'])
+
+        // Update TTP
+        // 10 point each match
+        if(winner !== -1) {
+            if (winner === 0) {
+                await UserModel.findByIdAndUpdate(P1._id, {
+                    TTP: P1.TTP + 10
+                })
+            } else {
+                await UserModel.findByIdAndUpdate(P2._id, {
+                    TTP: P2.TTP + 10
+                })
+            }
+        }
+
+        io.to(matchId).emit('result-listener', { winner })
+    })
 }

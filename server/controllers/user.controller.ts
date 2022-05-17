@@ -52,6 +52,7 @@ export const getProfile = async (req: Request & { userId?: string }, res: Respon
 
         return res.status(200).json({
             data: {
+                _id: user._id,
                 username: user.username,
                 fullname: user.fullname,
                 email: user.email
@@ -84,5 +85,20 @@ export const addFriend = async (req: Request & { userId?: string }, res: Respons
             data: null,
             error: "Add friend failed !"
         })
+    }
+}
+
+export const getFriendList = async (req: Request & { userId?: string }, res: Response) => {
+    try {
+        const user = await UserModel.findById(req.userId).populate('friends')
+        return res.status(200).json({
+            data: {
+                friends: user.friends
+            },
+            error: null 
+        })
+
+    } catch (error) {
+        return res.sendStatus(404)
     }
 }

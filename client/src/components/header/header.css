@@ -1,11 +1,12 @@
 .header {
     padding: 24px 0;
-    position: relative;
+    position: absolute;
     /* background: rgba(20, 14, 56, 0.9); */
     background-color: transparent;
     top: 0;
     width: 100%;
     color: #fff;
+    z-index: 999;
 }
 
 .header .navigation {

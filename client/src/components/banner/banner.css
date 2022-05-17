@@ -4,7 +4,7 @@
     background-attachment: scroll;
     background-position: center center;
     background-size: cover;
-    height: 840px;
+    height: 100vh;
     position: relative;
     display: flex;
     align-items: center;

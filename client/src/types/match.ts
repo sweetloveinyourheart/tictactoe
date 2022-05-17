@@ -7,7 +7,9 @@ enum MatchResult {
 }
 
 export interface MatchInterface {
+    _id: string
     P1: UserInterface
     P2: UserInterface
+    timeStamp: Date
     result: MatchResult
 }

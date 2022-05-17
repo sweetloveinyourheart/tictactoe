@@ -1,7 +1,9 @@
+import axios from "axios";
 import { FunctionComponent, useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../contexts/auth";
 import { useSocket } from "../../contexts/socket";
+import { UserInterface } from "../../types/user";
 import Loading from "../loading/loading";
 import "./match.css"
 
@@ -10,10 +12,24 @@ interface MatchProps { }
 const Match: FunctionComponent<MatchProps> = () => {
     const [isInviting, setIsInviting] = useState<boolean>(false)
     const [friend, setFriend] = useState<string>("")
+    const [friendList, setFriendList] = useState<UserInterface[]>([])
 
     const navigate = useNavigate()
     const { socket } = useSocket()
     const { user } = useAuth()
+
+    useEffect(() => {
+        (async () => {
+            try {
+                const { data } = await axios.get('/api/user/getFriendList')
+                const result = data.data
+                if (!result?.error) {
+                    setFriendList(result.friends)
+                }
+
+            } catch (error) { }
+        })()
+    }, [])
 
     useEffect(() => {
         socket?.on('invite-response', (payload) => {
@@ -25,7 +41,7 @@ const Match: FunctionComponent<MatchProps> = () => {
         })
 
         socket?.on('match-response', (payload) => {
-            if(payload?.data) {
+            if (payload?.data) {
                 navigate(`/playground?matchId=${payload.data.matchId}`)
             } else {
                 setIsInviting(false)
@@ -47,6 +63,30 @@ const Match: FunctionComponent<MatchProps> = () => {
 
         socket?.emit('invite-request', { friend, inviter: user?.fullname })
     }, [friend, isInviting, user?.fullname])
+
+    const yasuo = () => {
+        return friendList.map((elm, id) => {
+            return (
+                <div className="friend-data" key={id}>
+                    <div className="friend-data__detail">
+                        <div className="friend-avatar">
+                            {elm.fullname[0]}
+                        </div>
+                        <div className="friend-data-info">
+                            <p className="friend-name"> {elm.fullname} </p>
+                            <span className="friend-TTP">TTP: {elm.TTP}</span>
+                        </div>
+                    </div>
+
+                    <div className="friend-data__invite">
+                        <button>
+                            Challenge Now !
+                        </button>
+                    </div>
+                </div>
+            )
+        })
+    }
 
     return (
         <section className="match">
@@ -71,6 +111,12 @@ const Match: FunctionComponent<MatchProps> = () => {
                                 </form>
                             )
                         }
+                    </div>
+                </div>
+                <div className="friend-area">
+                    <h1> Friend List </h1>
+                    <div className="friend-list">
+                        {yasuo()}
                     </div>
                 </div>
             </div>

@@ -1,24 +1,128 @@
-import { FunctionComponent, useCallback, useState } from "react";
+import { FunctionComponent, useCallback, useEffect, useState } from "react";
+import { useSocket } from "../../contexts/socket";
 import "./playground.css"
 
-interface PlaygroundProps { 
+interface PlaygroundProps {
+    icon: number
+    matchId: string
+    initTurn: string
+    you: string
+}
+
+export interface TicListenerPayload {
+    position: {
+        x: number
+        y: number
+    }
+    player: string
     icon: number
 }
 
-const Playground: FunctionComponent<PlaygroundProps> = ({ icon }) => {
+
+const Playground: FunctionComponent<PlaygroundProps> = ({ icon, matchId, initTurn, you }) => {
     const [caro, setCaro] = useState([
         [-1, -1, -1],
         [-1, -1, -1],
         [-1, -1, -1]
     ])
     const [count, setCount] = useState(0)
+    const [turn, setTurn] = useState<string>("")
+    const [winner, setWinner] = useState<number | undefined>();
+
+    const { socket } = useSocket()
+
+    useEffect(() => {
+        socket?.emit('init-match', { matchId })
+        setTurn(initTurn)
+    }, [])
+
+    useEffect(() => {
+        socket?.on('tic-listener', (payload: TicListenerPayload) => {
+            if (payload.player !== you) {
+                let items = caro
+                items[payload.position.x][payload.position.y] = payload.icon
+                setCaro(items)
+                setTurn(you)
+                return;
+            }
+        })
+
+        socket?.on('result-listener', (payload) => {
+            setWinner(payload.winner)
+        })
+    }, [socket])
+
+    useEffect(() => {
+        // Across cheking
+        for (let i = 0; i < 3; i++) {
+            if (caro[i][0] === -1 || caro[i][1] === -1 || caro[i][2] === -1) {
+                // do nothing
+            }
+            else if (caro[i][0] === caro[i][1] && caro[i][1] === caro[i][2]) {
+
+                socket?.emit("match-result", {
+                    matchId,
+                    winner: caro[i][0]
+                })
+            }
+        }
+        // Down cheking
+        for (let i = 0; i < 3; i++) {
+            if (caro[0][i] === -1 || caro[1][i] === -1 || caro[2][i] === -1) {
+                // do nothing
+            }
+            else if (caro[0][i] === caro[1][i] && caro[1][i] === caro[2][i]) {
+                socket?.emit("match-result", {
+                    matchId,
+                    winner: caro[i][0]
+                })
+            }
+        }
+
+        // diagnol checking
+        if (
+            caro[0][0] === -1 ||
+            caro[1][1] === -1 ||
+            caro[2][2] === -1 ||
+            caro[0][2] === -1 ||
+            caro[2][0] === -1
+        ) {
+            // do nothing
+        }
+        else if (caro[0][0] === caro[1][1] && caro[1][1] === caro[2][2]) {
+            socket?.emit("match-result", {
+                matchId,
+                winner: caro[0][0]
+            })
+        } else if (caro[0][2] === caro[1][1] && caro[1][1] === caro[2][0]) {
+            socket?.emit("match-result", {
+                matchId,
+                winner: caro[0][2]
+            })
+        }
+
+        // Draw (5 is the maximum value for picking)
+        if (count === 5) {
+            console.log();
+            
+            socket?.emit("match-result", {
+                matchId,
+                winner: -1
+            })
+        }
+
+    }, [caro, turn])
 
     const onCaroClick = useCallback((x: number, y: number) => {
-        let items = caro
-        items[x][y] = icon
-        setCaro(items)
-        setCount(s => s + 1)
-    }, [caro, count, icon])
+        if (turn === you) {
+            let items = caro
+            items[x][y] = icon
+            setCaro(items)
+            setCount(s => s + 1)
+            setTurn("")
+            socket?.emit('tic', { position: { x, y }, icon, matchId })
+        }
+    }, [caro, count, icon, you, socket, turn])
 
     const renderCaroTable = () => {
         return caro.map((el, x) => {
@@ -53,7 +157,22 @@ const Playground: FunctionComponent<PlaygroundProps> = ({ icon }) => {
             <div className="container">
                 <div className="area">
                     <div className="caro">
-                        {renderCaroTable()}
+                        {winner !== undefined
+                            ? (
+                                winner !== -1
+                                    ? (
+                                        <div className="winner">
+                                            {winner === icon ? "You win !" : "You lose !"}
+                                        </div>
+                                    )
+                                    : (
+                                        <div className="winner">
+                                            {"Draw !"}
+                                        </div>
+                                    )
+                            )
+                            : renderCaroTable()
+                        }
                     </div>
                 </div>
             </div>

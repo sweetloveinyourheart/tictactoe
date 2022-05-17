@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import Loading from "../components/loading/loading";
 import Player from "../components/player/player";
 import Playground from "../components/playground/playground";
 import { useAuth } from "../contexts/auth";
@@ -14,6 +15,7 @@ export default function PlayGroundPage() {
         P1: undefined,
         P2: undefined
     })
+    const [matchId, setMatchId] = useState<string>("")
 
     const { search } = useLocation()
     const navigate = useNavigate()
@@ -22,16 +24,17 @@ export default function PlayGroundPage() {
     useEffect(() => {
         (async () => {
             try {
-                if(!user || search.length === 0) throw new Error()
+                if (!user || search.length === 0) throw new Error()
 
                 const { data } = await axios.get(`/api/match/init${search}`)
                 const match: MatchInterface = data.data
 
-                if (match.P1.username === user?.username)
-                    setIcon(1)
-                else
+                if (match.P1.username === user.username)
                     setIcon(0)
+                else
+                    setIcon(1)
 
+                setMatchId(match._id)
                 setPlayers({
                     P1: match.P1,
                     P2: match.P2
@@ -52,8 +55,11 @@ export default function PlayGroundPage() {
             backgroundRepeat: "no-repeat",
             backgroundAttachment: "scroll"
         }}>
-            <Player players={players}/>
-            <Playground icon={icon} />
+            {(user && players.P2) && <Player players={players} you={user?._id} initTurn={players.P2._id} icon={icon}/>}
+            {(matchId.length !== 0 && players.P2 && players.P1 && user)
+                ? (<Playground icon={icon} matchId={matchId} initTurn={players.P2._id} you={user?._id} />)
+                : (<Loading />)
+            }
         </div>
     )
 }

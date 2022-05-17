@@ -10,8 +10,6 @@ export const initialMatch = async (req: Request, res: Response) => {
             error: null
         })
     } catch (error) {
-        console.log(error);
-        
         return res.status(404).json({
             data: null,
             error: "Cannot find this match !"

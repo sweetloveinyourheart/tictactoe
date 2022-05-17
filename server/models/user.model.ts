@@ -5,6 +5,8 @@ export type UserDocument = Document & {
     password: string
     fullname: string
     email: string
+    friends: UserDocument
+    TTP: number
 }
 
 const UserModelSchema = new Schema({

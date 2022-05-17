@@ -4,8 +4,10 @@
     background-attachment: scroll;
     background-position: bottom;
     background-size: cover;
-    height: 840px;
+    min-height: 100vh;
     position: relative;
+    display: flex;
+    align-items: center;
 }
 
 .auth-section .hero-content {
@@ -43,7 +45,7 @@
 }
 
 .auth-area {
-    padding: 80px 0;
+    padding: 120px 0;
 }
 
 /* .auth-section .auth-area .auth-area__image img {
