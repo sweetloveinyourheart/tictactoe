@@ -15,6 +15,8 @@ const UserComponent: FunctionComponent<UserProps> = () => {
                             <img src="/avater.png" alt="#"/>
                         </div>
                     </div>
+                    <div className="col-xl-8">
+                    </div>
                 </div>
             </div>
         </section>
