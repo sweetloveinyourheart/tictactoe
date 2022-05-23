@@ -7,7 +7,7 @@ interface HeaderProps { }
 
 const Header: FunctionComponent<HeaderProps> = () => {
     const navigate = useNavigate();
-    const { user } = useAuth()
+    const { user, logout } = useAuth()
 
     return (
         <header className="header">
@@ -22,7 +22,7 @@ const Header: FunctionComponent<HeaderProps> = () => {
                         <nav className="navigation">
                             <Link to="/"> Home </Link>
                             <Link to="/match"> Match </Link>
-                            <Link to="/"> Guide </Link>
+                            <Link to="/guide"> Guide </Link>
                             <Link to="/"> Top Player </Link>
                         </nav>
                     </div>
@@ -30,12 +30,23 @@ const Header: FunctionComponent<HeaderProps> = () => {
                         <div className="auth">
                             {user
                                 ? (
-                                    <div className="user" onClick={() => navigate('/user')}>
+                                    <div className="user">
                                         <div className="user__avatar">
-                                            {user.fullname[0]}
+                                            {/* {user.fullname[0]} */}
+                                            <img src="/avater2.png" alt="" />
                                         </div>
                                         <div className="user__fullname">
                                             {user.fullname}
+                                        </div>
+                                        <div className="user-dropdown">
+                                            <div className="user-dropdown__item" onClick={() => navigate('/user')}>
+                                                <i className="far fa-user-circle"></i>
+                                                <span> Thông tin tài khoản </span>
+                                            </div>
+                                            <div className="user-dropdown__item" onClick={() => logout()}>
+                                                <i className="fas fa-sign-out-alt"></i>
+                                                <span> Đăng xuất </span>
+                                            </div>
                                         </div>
                                     </div>
                                 )
@@ -47,6 +58,7 @@ const Header: FunctionComponent<HeaderProps> = () => {
                                 )
                             }
                         </div>
+
                     </div>
                 </div>
             </div>

@@ -55,7 +55,8 @@ export const getProfile = async (req: Request & { userId?: string }, res: Respon
                 _id: user._id,
                 username: user.username,
                 fullname: user.fullname,
-                email: user.email
+                email: user.email,
+                TTP: user.TTP
             },
             error: null
         })

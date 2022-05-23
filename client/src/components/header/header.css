@@ -37,7 +37,13 @@
     align-items: center;
     user-select: none;
     cursor: pointer;
+    position: relative;
 } 
+
+.header .auth .user:hover > .user-dropdown {
+    opacity: 1;
+    top: 70px;
+}
 
 .header .auth .user__fullname {
     font-size: 18px;
@@ -58,6 +64,12 @@
     font-size: 20px;
 }
 
+.header .auth .user__avatar img {
+    width: 100%;
+    border-radius: 100%;
+
+}
+
 .header .auth button {
     border: 3px solid #ffb41f;
     font-size: 18px;
@@ -71,4 +83,30 @@
 
 .header .auth button span {
     margin-right: 12px;
+}
+
+.header .auth .user .user-dropdown {
+    width: 250px;
+    position: absolute;
+    top: 90px;
+    right: 0;
+    border: 3px solid #ffb41f;
+    border-radius: 12px;
+    background-color: rgba(0, 0, 0, 0.25);
+    opacity: 0;
+    transition: 0.2s;
+
+}
+
+.header .auth .user .user-dropdown .user-dropdown__item {
+    padding: 12px 20px;
+    border-bottom: 1px solid #fff;
+}
+
+.header .auth .user .user-dropdown .user-dropdown__item:last-child {
+    border-bottom: none;
+}
+
+.header .auth .user .user-dropdown .user-dropdown__item span {
+    margin: 0 8px;
 }

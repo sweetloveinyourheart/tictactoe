@@ -14,12 +14,12 @@ interface PlayerProps {
 
 const Player: FunctionComponent<PlayerProps> = ({ players, you, initTurn, icon }) => {
     const [timer, setTimer] = useState(0)
-    const [turn, setTurn] = useState<string>("")
+    const [currentTurn, setCurrentTurn] = useState<string>("")
 
     const { socket } = useSocket()
 
     useEffect(() => {
-        setTurn(initTurn)
+        setCurrentTurn(initTurn)
         if (initTurn === you) {
             setTimer(Date.now() + 60000)
         }
@@ -27,7 +27,7 @@ const Player: FunctionComponent<PlayerProps> = ({ players, you, initTurn, icon }
 
     useEffect(() => {
         socket?.on('tic-listener', (payload: TicListenerPayload) => {
-            setTurn(payload.player)
+            setCurrentTurn(payload.player)
 
             if (payload.player !== you) {
                 setTimer(Date.now() + 60000)
@@ -43,8 +43,8 @@ const Player: FunctionComponent<PlayerProps> = ({ players, you, initTurn, icon }
             return (
                 <div className="user__icon">
                     {icon === 0
-                        ? (<i className="fas fa-times x"></i>)
-                        : (<i className="far fa-circle o"></i>)
+                        ? (<i className="far fa-circle o"></i>)
+                        : (<i className="fas fa-times x"></i>)
                     }
                 </div>
             )
@@ -53,8 +53,8 @@ const Player: FunctionComponent<PlayerProps> = ({ players, you, initTurn, icon }
         return (
             <div className="user__icon">
                 {icon !== 0
-                    ? (<i className="fas fa-times x"></i>)
-                    : (<i className="far fa-circle o"></i>)
+                    ? (<i className="far fa-circle o"></i>)
+                    : (<i className="fas fa-times x"></i>)
                 }
             </div>
         )
@@ -77,7 +77,7 @@ const Player: FunctionComponent<PlayerProps> = ({ players, you, initTurn, icon }
                     <div className="col-xl-4">
                         <div className="user ">
                             <div className={
-                                players.P1?._id === turn
+                                players.P1?._id !== currentTurn
                                     ? "user__avatar user__avatar--active"
                                     : "user__avatar"
                             }>
@@ -98,7 +98,7 @@ const Player: FunctionComponent<PlayerProps> = ({ players, you, initTurn, icon }
                     <div className="col-xl-4">
                         <div className="user user--right">
                             <div className={
-                                players.P2?._id === turn
+                                players.P2?._id !== currentTurn
                                     ? "user__avatar user__avatar--active"
                                     : "user__avatar"
                             }>

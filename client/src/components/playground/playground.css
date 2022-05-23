@@ -44,3 +44,26 @@
     font-size: 38px;
     color: #fff;
 }
+
+.playground .area .caro .winner .winner-icon {
+    width: 300px;
+}
+
+.playground .area .caro .winner .winner-icon img {
+    width: 100%;
+}
+
+.playground .area .caro .winner .winner-icon p {
+    text-align: center;
+}
+
+.playground .area .caro .winner .winner-icon button {
+    border: 3px solid #ffb41f;
+    font-size: 18px;
+    padding: 12px 24px;
+    background-color: #7414fa;
+    text-transform: uppercase;
+    color: #fff;
+    font-weight: 600;
+    border-radius: 12px;
+}

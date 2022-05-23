@@ -81,11 +81,7 @@ const Playground: FunctionComponent<PlaygroundProps> = ({ icon, matchId, initTur
 
         // diagnol checking
         if (
-            caro[0][0] === -1 ||
-            caro[1][1] === -1 ||
-            caro[2][2] === -1 ||
-            caro[0][2] === -1 ||
-            caro[2][0] === -1
+            caro[1][1] === -1
         ) {
             // do nothing
         }
@@ -104,7 +100,7 @@ const Playground: FunctionComponent<PlaygroundProps> = ({ icon, matchId, initTur
         // Draw (5 is the maximum value for picking)
         if (count === 5) {
             console.log();
-            
+
             socket?.emit("match-result", {
                 matchId,
                 winner: -1
@@ -162,7 +158,22 @@ const Playground: FunctionComponent<PlaygroundProps> = ({ icon, matchId, initTur
                                 winner !== -1
                                     ? (
                                         <div className="winner">
-                                            {winner === icon ? "You win !" : "You lose !"}
+                                            {winner === icon
+                                                ? (
+                                                    <div className="winner-icon">
+                                                        <img src="/wincup.png" alt="#" />
+                                                        <p>You win !</p>
+                                                        <div className="d-flex justify-content-center">
+                                                            <button>Back to looby</button>
+                                                        </div>
+                                                    </div>
+                                                )
+                                                : (
+                                                    <div>
+                                                        <p>You lose !</p>
+                                                    </div>
+                                                )
+                                            }
                                         </div>
                                     )
                                     : (
