@@ -45,19 +45,21 @@
     color: #fff;
 }
 
-.playground .area .caro .winner .winner-icon {
+.playground .area .caro .winner-icon {
     width: 300px;
 }
 
-.playground .area .caro .winner .winner-icon img {
+.playground .area .caro .winner-icon img {
     width: 100%;
 }
 
-.playground .area .caro .winner .winner-icon p {
+.playground .area .caro .winner-icon p {
     text-align: center;
+    font-size: 32px;
+    color: #fff;
 }
 
-.playground .area .caro .winner .winner-icon button {
+.playground .area .caro .winner-icon button {
     border: 3px solid #ffb41f;
     font-size: 18px;
     padding: 12px 24px;

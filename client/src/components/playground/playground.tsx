@@ -1,4 +1,5 @@
 import { FunctionComponent, useCallback, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useSocket } from "../../contexts/socket";
 import "./playground.css"
 
@@ -30,6 +31,7 @@ const Playground: FunctionComponent<PlaygroundProps> = ({ icon, matchId, initTur
     const [winner, setWinner] = useState<number | undefined>();
 
     const { socket } = useSocket()
+    const navigate = useNavigate()
 
     useEffect(() => {
         socket?.emit('init-match', { matchId })
@@ -164,21 +166,29 @@ const Playground: FunctionComponent<PlaygroundProps> = ({ icon, matchId, initTur
                                                         <img src="/wincup.png" alt="#" />
                                                         <p>You win !</p>
                                                         <div className="d-flex justify-content-center">
-                                                            <button>Back to looby</button>
+                                                            <button onClick={() => navigate('/match')}>Back to looby</button>
                                                         </div>
                                                     </div>
                                                 )
                                                 : (
-                                                    <div>
+                                                    <div className="winner-icon">
+                                                        <img src="/defeated.png" alt="#" />
                                                         <p>You lose !</p>
+                                                        <div className="d-flex justify-content-center">
+                                                            <button onClick={() => navigate('/match')}>Back to looby</button>
+                                                        </div>
                                                     </div>
                                                 )
                                             }
                                         </div>
                                     )
                                     : (
-                                        <div className="winner">
-                                            {"Draw !"}
+                                        <div className="winner-icon">
+                                            <img src="/draw.png" alt="#" />
+                                            <p>Draw !</p>
+                                            <div className="d-flex justify-content-center">
+                                                <button onClick={() => navigate('/match')}>Back to looby</button>
+                                            </div>
                                         </div>
                                     )
                             )

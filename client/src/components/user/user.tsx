@@ -21,6 +21,7 @@ const UserComponent: FunctionComponent<UserProps> = () => {
                     <div className="col-xl-8">
                         <div className="description">
                             <h2 className="description_title"><i className='far fa-star'></i> Information <i className='far fa-star'></i></h2>
+                            <div className="user_fullname"><p>Username: {user?.username}</p></div>
                             <div className="user_fullname"><p>Full name: {user?.fullname}</p></div>
                             <div className="user_email"><p>Email: {user?.email}</p></div>
                             <div className="user_ttp"><p>TTP: {user?.TTP}</p></div>

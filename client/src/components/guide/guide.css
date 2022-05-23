@@ -1,6 +1,19 @@
 .guide-component {
-    padding: 120px 0px;
+    padding: 60px 0px;
     margin-top: 120px;
+}
+
+.guide-component .guide-area {
+    padding: 70px 0;
+}
+
+.guide-component .guide-area h1 {
+    font-size: 40px !important;
+    margin-bottom: 24px;
+}
+
+.guide-component .guide-area h2 {
+    font-size: 28px;
 }
 
 .guide-component .guide-title {
@@ -18,11 +31,11 @@
 
 .guide-component .guide {
     padding: 24px;
-    font-size: 18px;
     border: 5px solid #9933CC;
     border-radius: 10px;
     color: #fff;
     font-weight: 600;
+    height: 100%;
 }
 
 .guide-component .guide-image {
