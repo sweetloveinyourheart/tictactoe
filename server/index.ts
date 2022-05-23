@@ -17,7 +17,7 @@ const app: Express = express();
 const server = http.createServer(app);
 const io = new Server(server, { cors: { origin: clientOrigin, methods: ["GET", "POST"], credentials: true } });
 
-const url = process.env.DATABASE_URL || ""
+const url = process.env.ATLAS_URL || ""
 mongoose.connect(url, { autoIndex: true }, (err) => {
   if (err)
     console.log(err);
