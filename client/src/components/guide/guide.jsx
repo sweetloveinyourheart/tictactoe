@@ -20,16 +20,16 @@ const GuideComponent = () => {
                         </div>
                     </div>
                     <div className="col-xl-6">
-                        <div className="">
-
+                        <div className="guide-image">
+                            <img src="/guide-image1.png" alt="#" />
                         </div>
                     </div>
                 </div>
                 <h2 className="guide-title">Types Of Play To Avoid</h2>
                 <div className="row">
                     <div className="col-xl-6">
-                        <div className="">
-                            
+                        <div className="guide-image">
+                            <img src="/guide-image2.png" alt="#" />
                         </div>
                     </div>
                     <div className="col-xl-6">
@@ -64,8 +64,8 @@ const GuideComponent = () => {
                         </div>
                     </div>
                     <div className="col-xl-6">
-                        <div className="">
-
+                        <div className="guide-image">
+                            <img src="/guide-image3.png" alt="#" />
                         </div>
                     </div>
                 </div>
