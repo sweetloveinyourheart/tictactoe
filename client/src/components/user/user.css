@@ -10,4 +10,22 @@
 
 .user-component .avatar img {
     width: 100%;
+    border: 5px solid #9933CC;
+    border-radius: 50%;
+    box-shadow: 1px 1px 2px #000, 0 0 25px  #6633FF, 0 0 15px #330099;
+}
+.user-component .description .description_title{
+    width: 100%;
+    text-align: center;
+}
+.user-component .description {
+    height: 250px;
+    padding: 24px;
+    font-size: 18px;
+    text-transform: uppercase;
+    color: #fff;
+    font-weight: 600;
+    border: 5px solid #9933CC;
+    border-radius: 10px;
+    box-shadow: 5px 10px #6633FF;
 }
