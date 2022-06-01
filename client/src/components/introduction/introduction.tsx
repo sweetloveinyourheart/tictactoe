@@ -25,8 +25,8 @@ const Introduction: FunctionComponent<IntroductionProps> = () => {
                                     <img src="https://res.cloudinary.com/tynxcode/image/upload/v1654083912/tictactoe/gaming-world1_isrfmc.webp" alt="intro" />
                                 </div>
                                 <div className="intro-item__descr">
-                                    <h4>LIVE STREAMING</h4>
-                                    <p>When unknown printer took type and scrambled it to make type specimen book centuries,</p>
+                                    <h4>EASY TO PLAY</h4>
+                                    <p>The game has simple gameplay and is suitable for all ages, popular in schools and universities</p>
                                 </div>
                             </div>
                         </Slide>
@@ -39,8 +39,8 @@ const Introduction: FunctionComponent<IntroductionProps> = () => {
                                     <img src="https://res.cloudinary.com/tynxcode/image/upload/v1654083911/tictactoe/gaming-world2_zmuq0e.webp" alt="intro" />
                                 </div>
                                 <div className="intro-item__descr">
-                                    <h4>GAME NEWS</h4>
-                                    <p>When unknown printer took type and scrambled it to make type specimen book centuries,</p>
+                                    <h4>CHALLENGER</h4>
+                                    <p>You can become the world's champion with the game's ranked mode, defeat your opponents and claim the glory</p>
                                 </div>
                             </div>
                         </Slide>
@@ -52,8 +52,8 @@ const Introduction: FunctionComponent<IntroductionProps> = () => {
                                     <img src="https://res.cloudinary.com/tynxcode/image/upload/v1654083914/tictactoe/gaming-world3_vk1nps.webp" alt="intro" />
                                 </div>
                                 <div className="intro-item__descr">
-                                    <h4>GAME TOURNAMENTS</h4>
-                                    <p>When unknown printer took type and scrambled it to make type specimen book centuries,</p>
+                                    <h4>SIMPLE INTERFACE</h4>
+                                    <p>The application has a simple interface available for comfortable use</p>
                                 </div>
                             </div>
                         </Slide>

@@ -21,7 +21,7 @@ const Banner: FunctionComponent<BannerProps> = () => {
                                     BEST GAME <br />
                                     PLAYING TODAY.
                                 </h1>
-                                <p> Simply text of the printing and typesetting industry. </p>
+                                <p> Best games to play when you need to relax </p>
                                 <div className="hero-content__btn">
                                     <button onClick={() => navigate('/match')}>
                                         <span>Play now </span>

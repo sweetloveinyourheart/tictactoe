@@ -18,9 +18,7 @@ const Footer: FunctionComponent<FooterProps> = () => {
                                     <img src="https://res.cloudinary.com/tynxcode/image/upload/v1654084749/tictactoe/logo_wmkmy5.png" alt="#" />
                                 </div>
                                 <div className="footer-item__text">
-                                    <p>It long estabhed fact that reader
-                                        will ditracted the readable content
-                                        looking using readable.</p>
+                                    <p>Contact us with our social media, facebook, instagram, twitter and more</p>
                                 </div>
                                 <div className="footer-item__social">
                                     <i className="fab fa-facebook-square"></i>
