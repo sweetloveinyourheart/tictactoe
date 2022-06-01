@@ -5,6 +5,8 @@ services:
     image: app
     container_name: app
     hostname: app
+    environment:
+      - HOST=tictacground.space
     build:
       context: 'client'
       dockerfile: Dockerfile
