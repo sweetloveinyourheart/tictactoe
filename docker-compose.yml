@@ -8,7 +8,7 @@ services:
     build:
       context: 'client'
       dockerfile: Dockerfile
-    command: yarn start
+    command: yarn run start:prod
     ports:
       - 3000:3000
     networks:

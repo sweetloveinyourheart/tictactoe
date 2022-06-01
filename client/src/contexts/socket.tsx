@@ -25,7 +25,7 @@ const SocketProvider: FunctionComponent<SocketProviderProps> = ({ children }) =>
 
     useEffect(() => {
         if (user) {
-            setSocket(io(socketEndpoint || "localhost:9000", { query: { token: accessToken } }))
+            setSocket(io(socketEndpoint || "https://tictacground.space", { query: { token: accessToken } }))
         }
     }, [user, accessToken])
 

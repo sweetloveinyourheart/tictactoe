@@ -9,11 +9,15 @@ import MatchPage from './pages/match';
 import PlayGroundPage from './pages/playground';
 import TopPlayerPage from './pages/top-player';
 import User from './pages/user';
+import { Helmet } from 'react-helmet'
 
 function App() {
   return (
     <Suspense>
       <InviteModal />
+      <Helmet>
+        <title>Tic Tac Toe</title>
+      </Helmet>
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/authentication' element={<Auth />} />
