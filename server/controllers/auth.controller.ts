@@ -54,12 +54,9 @@ export const refreshToken = async (req: Request, res: Response) => {
         const isValid = await jwt.verify(extractedToken, process.env.JWT_SECRET)
         if (!isValid) return res.sendStatus(403)
 
-        const { accessToken, refreshToken } = generateTokens({ _id: rfTokenStored.user._id, username: rfTokenStored.user.username })
+        const { accessToken } = generateTokens({ _id: rfTokenStored.user._id, username: rfTokenStored.user.username })
 
-        //store rf token to DB
-        await RefreshTokenModel.findOneAndUpdate({ user: rfTokenStored.user._id }, { token: refreshToken })
-
-        return res.status(200).cookie("refreshToken", refreshToken).json({
+        return res.status(200).json({
             accessToken
         })
 

@@ -1,0 +1,32 @@
+.intro {
+    padding: 70px 0;
+}
+
+.intro h1 {
+    text-align: center;
+    color: #fff;
+    font-size: 55px;
+    line-height: 72px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 60px;
+}
+
+.intro-item {
+    text-align: center;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-position: center center;
+    background-size: cover;
+    padding: 55px 40px 50px;
+    margin: 0 40px;
+    
+}
+
+.intro-item__img {
+    margin-bottom: 24px;
+}
+
+.intro-item__descr h4, p {
+    color: #fff;
+}

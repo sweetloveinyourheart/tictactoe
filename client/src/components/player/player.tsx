@@ -14,26 +14,25 @@ interface PlayerProps {
 
 const Player: FunctionComponent<PlayerProps> = ({ players, you, initTurn, icon }) => {
     const [timer, setTimer] = useState(0)
-    const [currentTurn, setCurrentTurn] = useState<string>("")
+    const [turn, setTurn] = useState<string>("")
 
     const { socket } = useSocket()
 
     useEffect(() => {
-        setCurrentTurn(initTurn)
-        if (initTurn === you) {
-            setTimer(Date.now() + 60000)
-        }
-    }, [])
+        setTurn(initTurn)
+    }, [players])
+
 
     useEffect(() => {
         socket?.on('tic-listener', (payload: TicListenerPayload) => {
-            setCurrentTurn(payload.player)
 
-            if (payload.player !== you) {
+            if (payload.player === players.P1?._id) {
                 setTimer(Date.now() + 60000)
+                setTurn(players.P2?._id ?? "")
                 return;
             } else {
                 setTimer(0)
+                setTurn(players.P1?._id ?? "")
             }
         })
     }, [socket])
@@ -77,7 +76,7 @@ const Player: FunctionComponent<PlayerProps> = ({ players, you, initTurn, icon }
                     <div className="col-xl-4">
                         <div className="user ">
                             <div className={
-                                players.P1?._id !== currentTurn
+                                players.P1?._id === turn
                                     ? "user__avatar user__avatar--active"
                                     : "user__avatar"
                             }>
@@ -98,7 +97,7 @@ const Player: FunctionComponent<PlayerProps> = ({ players, you, initTurn, icon }
                     <div className="col-xl-4">
                         <div className="user user--right">
                             <div className={
-                                players.P2?._id !== currentTurn
+                                players.P2?._id === turn
                                     ? "user__avatar user__avatar--active"
                                     : "user__avatar"
                             }>

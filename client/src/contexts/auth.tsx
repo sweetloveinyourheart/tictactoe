@@ -35,7 +35,7 @@ const AuthProvider: FunctionComponent<any> = ({ children }) => {
             }
 
             clearTimeout(tokenExpire);
-            setTokenExpired(setTimeout(() => getToken(), 10 * 60 * 1000))
+            setTokenExpired(setTimeout(() => getToken(), 55 * 60 * 1000))
         } catch (error) {
             setLoadingInitial(false)
             setUser(undefined)

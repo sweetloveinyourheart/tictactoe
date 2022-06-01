@@ -4,4 +4,5 @@ export interface UserInterface {
     fullname: string
     email: string
     TTP: number
+    friends: UserInterface[]
 }

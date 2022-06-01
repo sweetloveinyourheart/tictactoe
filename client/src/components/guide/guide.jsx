@@ -5,6 +5,9 @@ const GuideComponent = () => {
         <section className="guide-component">
             <div className="container">
                 <div className="guide-area">
+                    <div className='page-name'> GAME GUIDE </div>
+                </div>
+                <div className="guide-area">
                     <h1 className="guide-title">Tic Tac Toe Instructions And Basics</h1>
                     <div className="row">
                         <div className="col-xl-6">

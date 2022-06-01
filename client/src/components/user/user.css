@@ -1,6 +1,13 @@
 .user-component {
     padding: 120px 0;
     margin-top: 120px;
+    background-image: url(https://htmldemo.net/bonx/bonx/assets/img/bg/body-bg2.webp);
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-position: bottom;
+    background-size: cover;
+    min-height: 840px;
+    position: relative;
 }
 
 .user-component .avatar {
@@ -10,23 +17,111 @@
 
 .user-component .avatar img {
     width: 100%;
-    border: 5px solid #9933CC;
+    border: 5px solid #9933cc;
     border-radius: 50%;
-    box-shadow: 1px 1px 2px #000, 0 0 25px  #6633FF, 0 0 15px #330099;
+    box-shadow: 1px 1px 2px #000, 0 0 25px #6633ff, 0 0 15px #330099;
 }
-.user-component .description .description_title{
-    width: 100%;
-    text-align: center;
-    margin-bottom: 24px;
-}
+
 .user-component .description {
-    min-height: 250px;
+    min-height: 300px;
+    height: 100%;
     padding: 24px;
     font-size: 18px;
     text-transform: uppercase;
     color: #fff;
     font-weight: 600;
-    border: 5px solid #9933CC;
+    border: 5px solid #9933cc;
     border-radius: 10px;
-    box-shadow: 5px 10px #6633FF;
+    box-shadow: 5px 10px #6633ff;
+}
+
+.user-component .description .add-friend {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid #dcdcdc;
+    padding-bottom: 8px;
+    margin-bottom: 16px;
+}
+
+.user-component .description .add-friend input {
+    margin-right: 14px;
+    background-color: transparent;
+    padding: 4px 12px;
+    color: #fff;
+    font-size: 14px;
+    border: 1px solid #fff;
+    border-radius: 4px;
+}
+
+.user-component .description .add-friend input:focus {
+    border: 1px solid #f93707;
+    outline: 1px solid #f93707;
+}
+
+.user-component .description .add-friend.can-click:hover {
+    color: #f93707;
+    cursor: pointer;
+}
+
+.user-component .description .description_title {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 8px;
+    color: #ffb41f;
+}
+
+.user-component .description .friend-list {
+    max-height: 200px;
+    overflow-y: scroll;
+}
+
+.user-component .description .friend-list::-webkit-scrollbar {
+    display: none;
+}
+
+.user-component .description .friend-list .friend-list__item {
+    display: flex;
+    align-items: center;
+    padding: 12px 0;
+}
+
+.user-component .description .friend-list .friend-list__item:last-child {
+    border-bottom: none;
+}
+
+.user-component .description .friend-list .friend-list__item p {
+    margin: 0;
+    margin-left: 12px;
+    text-transform: none;
+}
+
+.user-component .description .friend-list .friend-list__item i {
+    font-size: 24px;
+    color: #06e763;
+}
+
+.user-component .description .friend-list .stranger {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 12px 0;
+    justify-content: space-between;
+
+}
+
+.user-component .description .friend-list .stranger .stranger__info {
+    display: flex;
+    align-items: center;
+}
+
+.user-component .description .friend-list .stranger .stranger__info p {
+    margin: 0;
+    margin-left: 12px;
+    text-transform: none;
+}
+
+.user-component .description .friend-list .stranger .stranger__info i {
+    font-size: 24px;
+    color: #06e763;
 }

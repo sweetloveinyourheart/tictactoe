@@ -66,10 +66,10 @@ export default function InviteModal() {
 
     const onReject = useCallback(() => {
         setIsOpen(false)
-        socket?.emit('match-accept', {
+        socket?.emit('match-denied', {
             roomId
         })
-    }, [roomId])
+    }, [roomId]) 
 
     function afterOpenModal() {
         // references are now sync'd and can be accessed.

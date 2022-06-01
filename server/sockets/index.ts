@@ -26,7 +26,7 @@ interface MatchResultPayload {
     winner: MatchResult
 }
 
-export default function socketHandlers(io: Server, socket: Socket & { userId?: string }) {
+export default function socketHandlers(io: Server, socket: Socket & { userId?: string, matchId?: string }) {
     socket.join(socket.userId)
 
     // invite
@@ -50,7 +50,6 @@ export default function socketHandlers(io: Server, socket: Socket & { userId?: s
     })
 
     socket.on('match-accept', async (payload: MatchAcceptPayload) => {
-        socket.join(payload.roomId)
 
         const newMatch = new MatchModel({
             P1: payload.roomId,
@@ -86,6 +85,7 @@ export default function socketHandlers(io: Server, socket: Socket & { userId?: s
         const match = await MatchModel.findById(matchId).populate(['P1', 'P2'])
         if (match.P1._id.toString() === socket.userId || match.P2._id.toString() === socket.userId) {
             socket.join(matchId)
+            socket.matchId = matchId
         }
     })
 
@@ -104,7 +104,7 @@ export default function socketHandlers(io: Server, socket: Socket & { userId?: s
 
         // Update TTP
         // 10 point each match
-        if(winner !== -1) {
+        if (winner !== -1) {
             if (winner === 0) {
                 await UserModel.findByIdAndUpdate(P1._id, {
                     TTP: P1.TTP + 10
@@ -117,5 +117,20 @@ export default function socketHandlers(io: Server, socket: Socket & { userId?: s
         }
 
         io.to(matchId).emit('result-listener', { winner })
+
+        // Clear match
+        socket.matchId = undefined
+        socket.leave(matchId)
+
+    })
+
+    socket.on("disconnect", async () => {
+        // if user leave match, the result will be draw
+        if (socket.matchId) {
+            await MatchModel.findByIdAndUpdate(socket.matchId, {
+                result: -1
+            })
+            io.to(socket.matchId).emit('result-listener', { winner: -1 })
+        }
     })
 }

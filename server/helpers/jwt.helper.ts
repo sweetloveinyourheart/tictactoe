@@ -10,7 +10,7 @@ export function generateTokens({ _id, username }: TokenPayload) {
         { _id, username },
         process.env.JWT_SECRET,
         {
-            expiresIn: '15m'
+            expiresIn: '1h'
         }
     )
 

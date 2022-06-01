@@ -1,12 +1,13 @@
 .header {
     padding: 24px 0;
-    position: absolute;
+    position: fixed;
     /* background: rgba(20, 14, 56, 0.9); */
     background-color: transparent;
     top: 0;
     width: 100%;
     color: #fff;
     z-index: 999;
+    transition: 0.2s;
 }
 
 .header .navigation {
@@ -109,4 +110,9 @@
 
 .header .auth .user .user-dropdown .user-dropdown__item span {
     margin: 0 8px;
+}
+
+
+@media screen and (max-width: 576px) {
+    
 }

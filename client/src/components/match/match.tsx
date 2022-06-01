@@ -79,9 +79,16 @@ const Match: FunctionComponent<MatchProps> = () => {
                     </div>
 
                     <div className="friend-data__invite">
-                        <button>
-                            Challenge Now !
-                        </button>
+                        {!isInviting
+                            ? (
+                                <button onClick={() => onInviteFriend(elm.username)}>
+                                    Challenge Now !
+                                </button>
+                            )
+                            : (
+                                <div className="d-flex justify-content-center"><Loading /></div>
+                            )
+                        }
                     </div>
                 </div>
             )

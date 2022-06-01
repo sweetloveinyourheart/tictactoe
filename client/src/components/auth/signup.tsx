@@ -129,7 +129,7 @@ const SignUp: FunctionComponent<SignUpProps> = ({ changeState }) => {
                                         />
                                     </div>
                                     <div className="auth-form__btn">
-                                        <button type="submit"> Signin </button>
+                                        <button type="submit"> Sign Up </button>
                                     </div>
                                 </form>
                                 <p onClick={() => changeState()}>

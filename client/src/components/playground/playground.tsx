@@ -101,8 +101,6 @@ const Playground: FunctionComponent<PlaygroundProps> = ({ icon, matchId, initTur
 
         // Draw (5 is the maximum value for picking)
         if (count === 5) {
-            console.log();
-
             socket?.emit("match-result", {
                 matchId,
                 winner: -1

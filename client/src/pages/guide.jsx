@@ -1,5 +1,6 @@
 import Header from "../components/header/header";
 import GuideComponent from "../components/guide/guide";
+import Footer from "../components/footer/footer";
 
 function Guide() {
 
@@ -7,6 +8,7 @@ function Guide() {
       <>
         <Header />
         <GuideComponent />
+        <Footer/>
       </>
     );
   }

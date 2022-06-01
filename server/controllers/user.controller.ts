@@ -17,7 +17,7 @@ export const register = async (req: Request, res: Response) => {
 
         // Check account existing
         const isExist = await UserModel.findOne({ username: data.username })
-        if(isExist) throw new Error("User already exist !")
+        if (isExist) throw new Error("User already exist !")
 
         //Hasing password
         // generate salt to hash password
@@ -47,7 +47,7 @@ export const getProfile = async (req: Request & { userId?: string }, res: Respon
         const userId = req.userId
         if (!userId) throw new Error()
 
-        const user = await UserModel.findById(userId)
+        const user = await UserModel.findById(userId).populate("friends")
         if (!user) return res.status(404).json({ data: null })
 
         return res.status(200).json({
@@ -56,7 +56,8 @@ export const getProfile = async (req: Request & { userId?: string }, res: Respon
                 username: user.username,
                 fullname: user.fullname,
                 email: user.email,
-                TTP: user.TTP
+                TTP: user.TTP,
+                friends: user.friends
             },
             error: null
         })
@@ -73,6 +74,7 @@ export const addFriend = async (req: Request & { userId?: string }, res: Respons
     try {
         const { friendId } = req.params
         await UserModel.findByIdAndUpdate(req.userId, { $push: { friends: friendId } })
+        await UserModel.findByIdAndUpdate(friendId, { $push: { friends: req.userId } })
 
         return res.status(200).json({
             data: {
@@ -96,10 +98,46 @@ export const getFriendList = async (req: Request & { userId?: string }, res: Res
             data: {
                 friends: user.friends
             },
-            error: null 
+            error: null
         })
 
     } catch (error) {
         return res.sendStatus(404)
+    }
+}
+
+export const getTopPlayer = async (req: Request, res: Response) => {
+    try {
+        const users = await UserModel.find().sort({ TTP: -1 })
+        return res.status(200).json({
+            data: users,
+            error: null
+        })
+    } catch (error) {
+        return res.status(404).json({
+            data: null,
+            error: "An error occurred while finding user !"
+        })
+    }
+}
+
+export const searchUser = async (req: Request, res: Response) => {
+    try {
+        const { name } = req.query
+
+        const nameRegex = new RegExp(String(name), 'ig')
+        const users = await UserModel.find({ fullname: nameRegex })
+
+        return res.status(200).json({
+            data: users,
+            error: null
+        })
+
+    } catch (error) {
+
+        return res.status(404).json({
+            data: null,
+            error: "An error occurred while finding user !"
+        })
     }
 }

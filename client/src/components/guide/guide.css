@@ -7,6 +7,16 @@
     padding: 70px 0;
 }
 
+.guide-component .guide-area .page-name {
+    font-size: 90px;
+    line-height: 90px;
+    font-family: "Metal Mania", cursive;
+    text-shadow: 3px 3px 0px #b154f0;
+    margin-bottom: 25px;
+    color: #fff;
+    text-align: center;
+}
+
 .guide-component .guide-area h1 {
     font-size: 40px !important;
     margin-bottom: 24px;

@@ -6,6 +6,7 @@ import Guide from './pages/guide';
 import Home from './pages/home';
 import MatchPage from './pages/match';
 import PlayGroundPage from './pages/playground';
+import TopPlayerPage from './pages/top-player';
 import User from './pages/user';
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
         <Route path='/match' element={<MatchPage />} />
         <Route path='/playground' element={<PlayGroundPage />} />
         <Route path='/guide' element={<Guide />} />
+        <Route path='/top-player' element={<TopPlayerPage />} />
       </Routes>
     </Suspense>
 
