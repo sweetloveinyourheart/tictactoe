@@ -4,6 +4,7 @@ services:
   app:
     image: app
     container_name: app
+    hostname: app
     build:
       context: 'client'
       dockerfile: Dockerfile
@@ -18,6 +19,7 @@ services:
   api:
     image: api
     container_name: api
+    hostname: api
     build:
       context: 'server'
       dockerfile: Dockerfile
