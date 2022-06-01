@@ -12,7 +12,7 @@ interface InviteRes {
 
 const customStyles = {
     content: {
-        top: '30%',
+        top: '40%',
         left: '50%',
         right: 'auto',
         bottom: 'auto',

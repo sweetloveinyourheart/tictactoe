@@ -45,3 +45,25 @@
 .banner .hero-img img {
     width: 100%;
 }
+
+@media screen and (max-width: 992px) {
+    .banner  {
+       margin: 120px 0;
+    }
+
+    .banner .hero-content h1 {
+        font-size: 38px;
+        line-height: 48px;
+        margin-bottom: 24px;
+        text-align: center;
+    }
+
+    .banner .hero-content p {
+        text-align: center;
+    }
+
+    .banner .hero-content .hero-content__btn {
+        display: flex;
+        justify-content: center;
+    }
+}

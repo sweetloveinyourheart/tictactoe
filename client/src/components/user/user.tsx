@@ -9,7 +9,16 @@ interface UserProps {
 }
 
 const UserComponent: FunctionComponent<UserProps> = () => {
+    const [information, setInformation] = useState<UserInterface>({
+        _id: '',
+        username: '',
+        fullname: '',
+        email: '',
+        friends: [],
+        TTP: 0
+    })
     const [isSearching, setIsSearching] = useState<boolean>(false)
+    const [isEdit, setIsEdit] = useState<boolean>(false)
     const [search, setSearch] = useState<string>("")
     const [friends, setFriends] = useState<UserInterface[]>([])
     const [stranger, setStranger] = useState<UserInterface[]>([])
@@ -18,6 +27,7 @@ const UserComponent: FunctionComponent<UserProps> = () => {
 
     useEffect(() => {
         if (user) {
+            setInformation(user)
             setFriends(user.friends)
         }
     }, [user])
@@ -38,6 +48,18 @@ const UserComponent: FunctionComponent<UserProps> = () => {
             setFriends(s => [...s, friend])
         }
     }, [])
+
+    const onUpdateProfile = useCallback(async () => {
+        const body = {
+            fullname: information.fullname,
+            email: information.email
+        }
+        const { data } = await axios.put(`/api/user/update`, body)
+
+        if (data.data && !data.error) {
+            setIsEdit(false)
+        }
+    }, [information])
 
     const renderFriends = () => {
         let result;
@@ -72,18 +94,16 @@ const UserComponent: FunctionComponent<UserProps> = () => {
         })
     }
 
-
-
     return (
         <section className="user-component">
             <div className="container">
                 <div className="row">
-                    <div className="col-xl-3">
+                    <div className="col-12 col-md-12 col-lg-4 col-xl-3">
                         <div className="avatar">
-                            <img src="/avater2.png" alt="#" />
+                            <img src="https://res.cloudinary.com/tynxcode/image/upload/v1654080696/tictactoe/avater2_vrvwmo.jpg" alt="#" />
                         </div>
                     </div>
-                    <div className="col-xl-5">
+                    <div className="col-12 col-md-12 col-lg-8 col-xl-5">
                         <div className="description">
                             <h2 className="description_title">
                                 <i className='far fa-star'></i> &nbsp;
@@ -91,15 +111,51 @@ const UserComponent: FunctionComponent<UserProps> = () => {
                                 <i className='far fa-star'></i>
                             </h2>
                             <div className="add-friend">
-                                <span>Your personal information</span>
+                                <span>Your personal information</span>&nbsp;
+                                {isEdit
+                                    ? (<i className="fas fa-save" onClick={() => onUpdateProfile()}></i>)
+                                    : (<i className="fas fa-edit" onClick={() => setIsEdit(true)}></i>)
+                                }
                             </div>
-                            <div className="user_fullname"><p>Username: {user?.username}</p></div>
-                            <div className="user_fullname"><p>Full name: {user?.fullname}</p></div>
-                            <div className="user_email"><p>Email: {user?.email ?? "Chưa cập nhật ..."}</p></div>
-                            <div className="user_ttp"><p>TTP: {user?.TTP}</p></div>
+                            <div className="user_fullname">
+                                <p>Username: {information?.username}</p>
+                            </div>
+                            <div className="user_ttp">
+                                <p>TTP: {information?.TTP}</p>
+                            </div>
+                            <div className="user_fullname">
+                                {!isEdit
+                                    ? (
+                                        <p>Full name: {information?.fullname}</p>
+                                    )
+                                    : (
+                                        <input
+                                            placeholder="Your fullname"
+                                            onChange={(e) => setInformation(s => ({ ...s, fullname: e.target.value }))}
+                                            value={information.fullname}
+                                        />
+                                    )
+                                }
+
+
+                            </div>
+                            <div className="user_email">
+                                {!isEdit
+                                    ? (
+                                        <p>Email: {information?.email ?? "Chưa cập nhật ..."}</p>
+                                    )
+                                    : (
+                                        <input
+                                            placeholder="Your email"
+                                            onChange={(e) => setInformation(s => ({ ...s, email: e.target.value }))}
+                                            value={information.email}
+                                        />
+                                    )
+                                }
+                            </div>
                         </div>
                     </div>
-                    <div className="col-xl-4">
+                    <div className="col-12 col-md-12 col-lg-12 col-xl-4">
                         <div className="description">
                             <h2 className="description_title">
                                 <i className='far fa-star'></i> &nbsp;
@@ -110,15 +166,16 @@ const UserComponent: FunctionComponent<UserProps> = () => {
                                 ? (
                                     <div className="add-friend can-click">
                                         <form onSubmit={onSearch}>
-                                            <input onChange={e => setSearch(e.target.value)} value={search} />
+                                            <input placeholder="Friend name ..." onChange={e => setSearch(e.target.value)} value={search} />
                                             <span onClick={() => onSearch()}><i className="fas fa-search"></i></span>
                                         </form>
                                     </div>
                                 )
                                 : (
                                     <div className="add-friend can-click" onClick={() => setIsSearching(true)}>
-                                        <i className="fas fa-plus"></i> &nbsp;
                                         <span>Add friend</span>
+                                        &nbsp;
+                                        <i className="fas fa-plus"></i>
                                     </div>
                                 )
                             }

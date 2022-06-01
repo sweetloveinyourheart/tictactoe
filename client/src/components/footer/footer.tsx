@@ -11,11 +11,11 @@ const Footer: FunctionComponent<FooterProps> = () => {
         <footer className="footer">
             <div className="container">
                 <div className="row">
-                    <div className="col-xl-4">
+                    <div className="col-12 col-md-12 col-lg-4 col-xl-4">
                         <div className="footer-content">
                             <div className="footer-item">
                                 <div className="logo">
-                                    <img src="https://htmldemo.net/bonx/bonx/assets/img/logo/logo.webp" alt="#" />
+                                    <img src="https://res.cloudinary.com/tynxcode/image/upload/v1654084749/tictactoe/logo_wmkmy5.png" alt="#" />
                                 </div>
                                 <div className="footer-item__text">
                                     <p>It long estabhed fact that reader
@@ -31,7 +31,7 @@ const Footer: FunctionComponent<FooterProps> = () => {
                         </div>
                     </div>
 
-                    <div className="col-xl-4">
+                    <div className="col-12 col-md-12 col-lg-4 col-xl-4">
                         <div className="footer-content">
 
                             <div className="footer-item">
@@ -54,7 +54,7 @@ const Footer: FunctionComponent<FooterProps> = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="col-xl-4">
+                    <div className="col-12 col-md-12 col-lg-4 col-xl-4">
                         <div className="footer-content">
 
                             <div className="footer-item">

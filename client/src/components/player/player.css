@@ -1,6 +1,5 @@
 .player {
     padding: 24px 0;
-
 }
 
 .player .user {
@@ -8,7 +7,7 @@
     align-items: center;
     user-select: none;
     cursor: pointer;
-} 
+}
 
 .player .user--right {
     flex-flow: row-reverse;
@@ -71,4 +70,36 @@
 .timer span {
     font-size: 40px;
     color: #fff;
+}
+
+@media screen and (max-width: 768px) {
+    .player .user {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .player .user--right {
+        align-items: flex-end;
+    }
+
+    .player .user__avatar {
+        margin: 0;
+    }
+
+    .player .user__icon {
+        margin-top: 12px;
+    }
+
+    .player .user__icon i {
+        margin: 0;
+    }
+
+    .player .user--right .user__fullname,
+    span {
+        text-align: end;
+    }
+
+    .player .user__fullname {
+        margin-top: 12px;
+    }
 }

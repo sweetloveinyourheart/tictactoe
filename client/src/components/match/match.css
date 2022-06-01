@@ -25,6 +25,7 @@
 }
 
 .match .invite__box .invite-box-form {
+    display: flex;
 }
 
 .match .invite__box .invite-box-form input {
@@ -62,7 +63,7 @@
     border-radius: 24px;
 }
 
-.match .friend-area  .friend-avatar {
+.match .friend-area .friend-avatar {
     margin: 0 12px;
     width: 75px;
     height: 75px;
@@ -94,4 +95,23 @@
     background-color: #b92b27;
     color: #fff;
     border: 1px solid #b92b27;
+}
+
+@media screen and (max-width: 768px) {
+    .match .invite__box .invite-box-form input {
+        width: 100%;
+    }
+
+    .match .friend-area .friend-data {
+        padding: 12px;
+    }
+
+    .match .friend-area .friend-data__invite button {
+        padding: 6px;
+    }
+
+    .match .friend-area .friend-avatar {
+        width: 50px;
+        height: 50px;
+    }
 }

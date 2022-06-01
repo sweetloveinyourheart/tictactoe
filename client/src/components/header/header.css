@@ -17,6 +17,10 @@
     height: 100%;
 }
 
+.header .navigation--dropdown {
+    display: block !important;
+}
+
 .header .navigation a {
     text-decoration: none;
     display: flex;
@@ -24,6 +28,17 @@
     text-transform: uppercase;
     color: #fff;
     font-weight: 600;
+}
+
+.header .navigation--dropdown a {
+    padding: 8px 16px;
+}
+
+.header .auth-nav {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: flex-end;
 }
 
 .header .auth {
@@ -39,7 +54,7 @@
     user-select: none;
     cursor: pointer;
     position: relative;
-} 
+}
 
 .header .auth .user:hover > .user-dropdown {
     opacity: 1;
@@ -68,7 +83,6 @@
 .header .auth .user__avatar img {
     width: 100%;
     border-radius: 100%;
-
 }
 
 .header .auth button {
@@ -80,6 +94,8 @@
     color: #fff;
     font-weight: 600;
     border-radius: 12px;
+    display: flex;
+    align-items: center;
 }
 
 .header .auth button span {
@@ -96,7 +112,6 @@
     background-color: rgba(0, 0, 0, 0.25);
     opacity: 0;
     transition: 0.2s;
-
 }
 
 .header .auth .user .user-dropdown .user-dropdown__item {
@@ -112,7 +127,29 @@
     margin: 0 8px;
 }
 
-
 @media screen and (max-width: 576px) {
-    
+    .header {
+        padding: 20px 0;
+        background-color: rgba(20, 14, 56, 0.9) !important;
+    }
+
+    .header .toggle {
+        font-size: 24px;
+    }
+
+    .header .auth button {
+        padding: 4px 12px;
+        margin-right: 12px;
+    }
+}
+
+@media screen and (min-width: 577px) and (max-width: 767px) {
+    .header {
+        padding: 20px 0;
+        background-color: rgba(20, 14, 56, 0.9) !important;
+    }
+
+    .header .auth button {
+        padding: 4px 12px;
+    }
 }

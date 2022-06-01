@@ -37,10 +37,9 @@
 
 .top-player .player-area .friend-data.friend-data--border {
     padding: 31px 48px 31px 48px;
-
 }
 
-.top-player .player-area  .friend-avatar {
+.top-player .player-area .friend-avatar {
     margin: 0 12px;
     width: 125px;
     height: 125px;
@@ -52,7 +51,7 @@
     font-size: 20px;
 }
 
-.top-player .player-area  .friend-avatar.friend-avatar--border {
+.top-player .player-area .friend-avatar.friend-avatar--border {
     border: 4px solid #fff;
     border-radius: 100%;
     height: 75px;
@@ -91,4 +90,26 @@
 .top-player .player-area .friend-data__TTP p {
     font-size: 20px;
     margin: 0;
+}
+
+@media screen and (max-width: 768px) {
+    .top-player .player-area .friend-data {
+        flex-direction: column;
+    }
+
+    .top-player .player-area .friend-data__detail {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .top-player .player-area .friend-data-info {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .top-player .player-area .friend-avatar.friend-avatar--border {
+        margin: 0;
+    }
 }

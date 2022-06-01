@@ -131,3 +131,10 @@
 .auth-section .auth-area__exec p:hover {
     color: #7414fa;
 }
+
+@media screen and (max-width: 768px) {
+    .auth-section .auth-area .auth-area__image img{
+        width: 100%;
+        padding: 20px;
+    }
+}

@@ -5,6 +5,7 @@ export type MatchDocument = Document & {
     P1: UserDocument
     P2: UserDocument
     result: MatchResult
+    completed: boolean
 }
 
 export enum MatchResult {
@@ -35,6 +36,11 @@ const MatchModelSchema = new Schema({
     timeStamp: {
         type: Date,
         default: new Date()  
+    },
+
+    completed: {
+        type: Boolean,
+        default: false
     }
 });
 

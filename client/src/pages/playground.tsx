@@ -29,6 +29,10 @@ export default function PlayGroundPage() {
                 const { data } = await axios.get(`/api/match/init${search}`)
                 const match: MatchInterface = data.data
 
+                if(!data.data) {
+                    throw new Error()
+                }
+
                 if (match.P1.username === user.username)
                     setIcon(0)
                 else

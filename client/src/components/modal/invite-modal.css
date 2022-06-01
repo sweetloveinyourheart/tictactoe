@@ -49,3 +49,9 @@
 .invite-modal .modal-footer .denied-btn {
     background-color: #f30606;
 }
+
+@media screen and (max-width: 576px){
+    .invite-modal {
+        width: 325px;
+    }
+}

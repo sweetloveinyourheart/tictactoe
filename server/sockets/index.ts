@@ -99,7 +99,8 @@ export default function socketHandlers(io: Server, socket: Socket & { userId?: s
 
     socket.on('match-result', async ({ matchId, winner }: MatchResultPayload) => {
         const { P1, P2 } = await MatchModel.findByIdAndUpdate(matchId, {
-            result: winner
+            result: winner,
+            completed: true
         }).populate(['P1', 'P2'])
 
         // Update TTP
@@ -128,7 +129,8 @@ export default function socketHandlers(io: Server, socket: Socket & { userId?: s
         // if user leave match, the result will be draw
         if (socket.matchId) {
             await MatchModel.findByIdAndUpdate(socket.matchId, {
-                result: -1
+                result: -1,
+                completed: true
             })
             io.to(socket.matchId).emit('result-listener', { winner: -1 })
         }

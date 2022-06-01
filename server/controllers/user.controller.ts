@@ -108,7 +108,7 @@ export const getFriendList = async (req: Request & { userId?: string }, res: Res
 
 export const getTopPlayer = async (req: Request, res: Response) => {
     try {
-        const users = await UserModel.find().sort({ TTP: -1 })
+        const users = await UserModel.find().sort({ TTP: -1 }).limit(10)
         return res.status(200).json({
             data: users,
             error: null
@@ -138,6 +138,23 @@ export const searchUser = async (req: Request, res: Response) => {
         return res.status(404).json({
             data: null,
             error: "An error occurred while finding user !"
+        })
+    }
+}
+
+export const updateUser = async (req: Request & { userId?: string }, res: Response) => {
+    try {
+        const data = req.body
+
+        const users = await UserModel.findByIdAndUpdate(req.userId, data)
+        return res.status(200).json({
+            data: users,
+            error: null
+        })
+    } catch (error) {
+        return res.status(404).json({
+            data: null,
+            error: "An error occurred while update user !"
         })
     }
 }

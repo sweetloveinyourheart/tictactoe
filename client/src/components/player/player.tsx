@@ -73,7 +73,7 @@ const Player: FunctionComponent<PlayerProps> = ({ players, you, initTurn, icon }
         <div className="player">
             <div className="container">
                 <div className="row justify-content-between">
-                    <div className="col-xl-4">
+                    <div className="col-6 col-xl-4">
                         <div className="user ">
                             <div className={
                                 players.P1?._id === turn
@@ -89,12 +89,12 @@ const Player: FunctionComponent<PlayerProps> = ({ players, you, initTurn, icon }
                             {showIcon(players.P1?._id)}
                         </div>
                     </div>
-                    <div className="col-xl-4">
+                    <div className="d-none d-md-block col-xl-4">
                         <div className="timer">
                             <Countdown date={timer} renderer={renderer} />
                         </div>
                     </div>
-                    <div className="col-xl-4">
+                    <div className="col-6 col-xl-4">
                         <div className="user user--right">
                             <div className={
                                 players.P2?._id === turn

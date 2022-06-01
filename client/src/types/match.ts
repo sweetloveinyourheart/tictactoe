@@ -1,9 +1,9 @@
 import { UserInterface } from "./user";
 
-enum MatchResult {
-    P1,
-    P2,
-    Draw
+export enum MatchResult {
+    P1 = 0,
+    P2 = 1,
+    Draw = -1
 }
 
 export interface MatchInterface {

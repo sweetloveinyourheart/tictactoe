@@ -19,7 +19,7 @@
     background-position: center center;
     background-size: cover;
     padding: 55px 40px 50px;
-    margin: 0 40px;
+    margin: 0px 40px;
     
 }
 
@@ -29,4 +29,10 @@
 
 .intro-item__descr h4, p {
     color: #fff;
+}
+
+@media screen and (max-width: 567px){
+    .intro .intro-item {
+        margin: 12px 24px;
+    }
 }
