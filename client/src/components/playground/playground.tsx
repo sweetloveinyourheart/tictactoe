@@ -61,11 +61,11 @@ const Playground: FunctionComponent<PlaygroundProps> = ({ icon, matchId, initTur
                 // do nothing
             }
             else if (caro[i][0] === caro[i][1] && caro[i][1] === caro[i][2]) {
-
                 socket?.emit("match-result", {
                     matchId,
                     winner: caro[i][0]
                 })
+                return;
             }
         }
         // Down cheking
@@ -76,8 +76,9 @@ const Playground: FunctionComponent<PlaygroundProps> = ({ icon, matchId, initTur
             else if (caro[0][i] === caro[1][i] && caro[1][i] === caro[2][i]) {
                 socket?.emit("match-result", {
                     matchId,
-                    winner: caro[i][0]
+                    winner: caro[0][i]
                 })
+                return;
             }
         }
 

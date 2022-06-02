@@ -52,6 +52,8 @@ const Match: FunctionComponent<MatchProps> = () => {
     const onInviteFriend = useCallback((username?: string) => {
         if (isInviting) return;
 
+        if(username === user?.username || friend === user?.username) return;
+
         setIsInviting(true)
         setFriend("")
 
@@ -62,7 +64,7 @@ const Match: FunctionComponent<MatchProps> = () => {
         }
 
         socket?.emit('invite-request', { friend, inviter: user?.fullname })
-    }, [friend, isInviting, user?.fullname])
+    }, [friend, isInviting, user?.fullname, user?.username])
 
     const yasuo = () => {
         return friendList.map((elm, id) => {

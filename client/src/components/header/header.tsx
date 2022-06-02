@@ -45,27 +45,30 @@ const Header: FunctionComponent<HeaderProps> = () => {
                                 {user
                                     ? (
                                         <div className="user">
-                                            <div className="user__avatar">
-                                                {/* {user.fullname[0]} */}
-                                                <img src="https://res.cloudinary.com/tynxcode/image/upload/v1654080696/tictactoe/avater2_vrvwmo.jpg" alt="" />
-                                            </div>
-                                            <div className="d-none d-md-block user__fullname">
-                                                {user.fullname}
-                                            </div>
-                                            <div className="user-dropdown">
-                                                <div className="user-dropdown__item" onClick={() => navigate('/user')}>
-                                                    <i className="far fa-user-circle"></i>
-                                                    <span> Thông tin tài khoản </span>
+                                            <div className="user-context">
+                                                <div className="user__avatar">
+                                                    {/* {user.fullname[0]} */}
+                                                    <img src="https://res.cloudinary.com/tynxcode/image/upload/v1654080696/tictactoe/avater2_vrvwmo.jpg" alt="" />
                                                 </div>
-                                                <div className="user-dropdown__item" onClick={() => navigate('/match-history')}>
-                                                    <i className="fas fa-crown"></i>
-                                                    <span> Xem lịch sử đấu </span>
+                                                <div className="d-none d-md-block user__fullname">
+                                                    {user.fullname}
                                                 </div>
-                                                <div className="user-dropdown__item" onClick={() => logout()}>
-                                                    <i className="fas fa-sign-out-alt"></i>
-                                                    <span> Đăng xuất </span>
+                                                <div className="user-dropdown">
+                                                    <div className="user-dropdown__item" onClick={() => navigate('/user')}>
+                                                        <i className="far fa-user-circle"></i>
+                                                        <span> Thông tin tài khoản </span>
+                                                    </div>
+                                                    <div className="user-dropdown__item" onClick={() => navigate('/match-history')}>
+                                                        <i className="fas fa-crown"></i>
+                                                        <span> Xem lịch sử đấu </span>
+                                                    </div>
+                                                    <div className="user-dropdown__item" onClick={() => logout()}>
+                                                        <i className="fas fa-sign-out-alt"></i>
+                                                        <span> Đăng xuất </span>
+                                                    </div>
                                                 </div>
                                             </div>
+
                                         </div>
                                     )
                                     : (
