@@ -9,7 +9,7 @@ interface HistoryComponentProps {
 }
 
 const HistoryComponent: FunctionComponent<HistoryComponentProps> = () => {
-    const [matchs, setMatchs] = useState<MatchInterface[]>([])
+    const [matches, setMatches] = useState<MatchInterface[]>([])
 
     const { user } = useAuth()
 
@@ -17,7 +17,7 @@ const HistoryComponent: FunctionComponent<HistoryComponentProps> = () => {
         (async () => {
             const { data } = await axios.get('/api/match/history')
             if (data.data && !data.error) {
-                setMatchs(data.data)
+                setMatches(data.data)
             }
         })()
     }, [])
@@ -43,7 +43,7 @@ const HistoryComponent: FunctionComponent<HistoryComponentProps> = () => {
     }
 
     const renderMatch = () => {
-        return matchs.map((match, index) => {
+        return matches.map((match, index) => {
             return (
                 <div className="history-item" key={index}>
                     <div className="row">

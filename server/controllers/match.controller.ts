@@ -27,8 +27,8 @@ export const initialMatch = async (req: Request, res: Response) => {
 
 export const getMatchHistory = async (req: Request & { userId?: string }, res: Response) => {
     try {
-        const invitedMatch = await MatchModel.find({ P1: req.userId }).populate(["P1", "P2"])
-        const invitingMatch = await MatchModel.find({ P2: req.userId }).populate(["P1", "P2"])
+        const invitedMatch = await MatchModel.find({ P1: req.userId }).populate(["P1", "P2"]).sort({ timeStamp: -1 })
+        const invitingMatch = await MatchModel.find({ P2: req.userId }).populate(["P1", "P2"]).sort({ timeStamp: -1 })
 
         return res.status(200).json({
             data: [...invitedMatch, ...invitingMatch],
