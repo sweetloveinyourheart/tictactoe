@@ -12,3 +12,4 @@ app.get("/*", function (req, res) {
 });
 
 app.listen(PORT);
+console.log("React Server is Running on PORT: ", PORT);
